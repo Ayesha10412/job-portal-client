@@ -2,7 +2,7 @@ import React from "react";
 import logo from "/src/assets/job_application_logo.png";
 const Footer = () => {
   return (
-    <footer className="footer bg-base-200 text-base-content p-10">
+    <footer className="footer bg-base-200 text-base-content p-10 mt-20">
       <aside>
         <img src={logo} alt="" />
         <p className="text-2xl font-bold">
