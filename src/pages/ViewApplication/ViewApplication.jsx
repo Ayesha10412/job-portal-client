@@ -1,5 +1,6 @@
 import React from "react";
 import { useLoaderData } from "react-router-dom";
+import Swal from "sweetalert2";
 
 const ViewApplication = () => {
   const applications = useLoaderData();
@@ -13,9 +14,21 @@ const ViewApplication = () => {
         "content-type": "application/json",
       },
       body: JSON.stringify(data),
-    }).then((data) => {
-      console.log(data);
-    });
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        console.log(data);
+        if (data.modifiedCount) {
+          Swal.fire({
+            position: "center",
+            icon: "success",
+            title: "Your work has been saved",
+            showConfirmButton: false,
+            timer: 1500,
+          });
+          // navigate("/myApplications");
+        }
+      });
   };
   return (
     <div>
