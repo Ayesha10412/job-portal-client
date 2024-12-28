@@ -18,7 +18,7 @@ const JobApply = () => {
 
     const jobApplication = {
       job_id: id,
-      applicant_email: user.email,
+      applicant_email: user?.email,
       linkedIn,
       github,
       resume,

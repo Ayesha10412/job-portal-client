@@ -9,7 +9,7 @@ const MyPostedJobs = () => {
     fetch(`http://localhost:5000/jobs?email=${user.email}`)
       .then((res) => res.json())
       .then((data) => setJobs(data));
-  }, [user.email]);
+  }, [user?.email]);
   return (
     <div>
       <h2 className="text-3xl font-bold">My Posted jobs: {jobs.length} </h2>

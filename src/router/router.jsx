@@ -11,6 +11,7 @@ import MyApplications from "../pages/myApplication/MyApplications";
 import AddJob from "../pages/AddJob/AddJob";
 import MyPostedJobs from "../pages/MyPostedJobs/MyPostedJobs";
 import ViewApplication from "../pages/ViewApplication/ViewApplication";
+import AllJob from "../pages/AllJobs/AllJob";
 const router = createBrowserRouter([
   {
     path: "/",
@@ -54,6 +55,10 @@ const router = createBrowserRouter([
           </PrivateRoute>
         ),
       },
+      {
+        path: "/allJobs",
+        element: <AllJob></AllJob>,
+      },
 
       {
         path: "myPostedJobs",
@@ -64,6 +69,16 @@ const router = createBrowserRouter([
         ),
       },
 
+      // {
+      //   path: "/viewApplications/:job_id",
+      //   element: (
+      //     <PrivateRoute>
+      //       <ViewApplication></ViewApplication>
+      //     </PrivateRoute>
+      //   ),
+      //   loader: ({ params }) =>
+      //     fetch(`http://localhost:5000/job-applications/jobs/${params.job_id}`),
+      // },
       {
         path: "/viewApplications/:job_id",
         element: (
@@ -71,16 +86,22 @@ const router = createBrowserRouter([
             <ViewApplication></ViewApplication>
           </PrivateRoute>
         ),
-        loader: ({ params }) =>
-          fetch(`http://localhost:5000/job-applications/jobs/${params.job_id}`),
+        // loader: ({ params }) =>
+        //   fetch(`http://localhost:5000/job-applications/jobs/${params.job_id}`),
+        loader: ({ params }) => {
+          console.log(params.job_id); // Debugging: Ensure job_id is passed correctly
+          return fetch(
+            `http://localhost:5000/job-applications/jobs/${params.job_id}`
+          ).then((res) => res.json());
+        },
       },
 
       {
-        path: "register",
+        path: "/register",
         element: <Register></Register>,
       },
       {
-        path: "login",
+        path: "/login",
         element: <SignIn></SignIn>,
       },
     ],

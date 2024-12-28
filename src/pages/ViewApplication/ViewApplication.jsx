@@ -4,6 +4,7 @@ import Swal from "sweetalert2";
 
 const ViewApplication = () => {
   const applications = useLoaderData();
+  console.log(applications);
   const handleStatusUpdate = (e, id) => {
     const data = {
       status: e.target.value,
@@ -17,7 +18,6 @@ const ViewApplication = () => {
     })
       .then((res) => res.json())
       .then((data) => {
-        console.log(data);
         if (data.modifiedCount) {
           Swal.fire({
             position: "center",
